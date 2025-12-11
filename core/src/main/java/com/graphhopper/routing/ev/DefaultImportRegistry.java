@@ -86,6 +86,7 @@ import com.graphhopper.routing.util.parsers.RSScenerySaltFlatParser;
 import com.graphhopper.routing.util.parsers.RSScenerySemiUrbanParser;
 import com.graphhopper.routing.util.parsers.RSScenerySnowCappedMountainParser;
 import com.graphhopper.routing.util.parsers.RSSceneryUrbanParser;
+import com.graphhopper.routing.util.parsers.RSFinalMdrStatusParser;
 import com.graphhopper.routing.util.parsers.RacingBikeAccessParser;
 import com.graphhopper.routing.util.parsers.RacingBikeAverageSpeedParser;
 import com.graphhopper.routing.util.parsers.RacingBikePriorityParser;
@@ -341,6 +342,11 @@ public class DefaultImportRegistry implements ImportRegistry {
                     (lookup, props) -> new RSSceneryMountainPassParser(
                             lookup.getIntEncodedValue(RSSceneryMountainPass.KEY))
             );
+            else if (RSFinalMdrStatus.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSFinalMdrStatus.create(),
+                        (lookup, props) -> new RSFinalMdrStatusParser(
+                                lookup.getEnumEncodedValue(RSFinalMdrStatus.KEY, RSFinalMdrStatus.class))
+                );
             // End block - Added by KJ for RideSense 22062024            
         else if (OSMWayID.KEY.equals(name))
             return ImportUnit.create(name, props -> OSMWayID.create(),
