@@ -71,6 +71,7 @@ import com.graphhopper.routing.util.parsers.RSBuildPercParser;
 import com.graphhopper.routing.util.parsers.RSPopulationDensityParser;
 import com.graphhopper.routing.util.parsers.RSRoadClassificationParser;
 import com.graphhopper.routing.util.parsers.RSRoadClassificationv2Parser;
+import com.graphhopper.routing.util.parsers.RSRoadClassificationi1Parser;
 import com.graphhopper.routing.util.parsers.RSRoadCurvatureParser;
 import com.graphhopper.routing.util.parsers.RSSceneryBackwaterParser;
 import com.graphhopper.routing.util.parsers.RSSceneryBeachParser;
@@ -271,7 +272,12 @@ public class DefaultImportRegistry implements ImportRegistry {
             return ImportUnit.create(name, props -> RSRoadClassificationv2.create(),
                     (lookup, props) -> new RSRoadClassificationv2Parser(
                            lookup.getEnumEncodedValue(RSRoadClassificationv2.KEY, RSRoadClassificationv2.class))
-            );            
+            );
+            else if (RSRoadClassificationi1.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSRoadClassificationi1.create(),
+                        (lookup, props) -> new RSRoadClassificationi1Parser(
+                               lookup.getEnumEncodedValue(RSRoadClassificationi1.KEY, RSRoadClassificationi1.class))
+                );            
             else if (RSSceneryUrban.KEY.equals(name))
             return ImportUnit.create(name, props -> RSSceneryUrban.create(),
                     (lookup, props) -> new RSSceneryUrbanParser(

@@ -22,13 +22,13 @@
 
 
 
-public enum RSFinalMdrStatus {
-    MDR, MAYBE_MDR_PRIMARY, MAYBE_MDR_SECONDARY, NOT_MDR;
+public enum RSRoadClassificationi1 {
+    URBAN, NH, SH, INTERIOR, UNKNOWN;
 
-    public static final String KEY = "final_mdr_status";
+    public static final String KEY = "road_classification_i1";
 
-    public static EnumEncodedValue<RSFinalMdrStatus> create() {
-        return new EnumEncodedValue<>(KEY, RSFinalMdrStatus.class);
+    public static EnumEncodedValue<RSRoadClassificationi1> create() {
+        return new EnumEncodedValue<>(KEY, RSRoadClassificationi1.class);
     }
 
     @Override
@@ -36,13 +36,13 @@ public enum RSFinalMdrStatus {
         return Helper.toLowerCase(super.toString());
     }
 
-    public static RSFinalMdrStatus find(String name) {
+    public static RSRoadClassificationi1 find(String name) {
         if (Helper.isEmpty(name))
-            return NOT_MDR;
+            return UNKNOWN;
         try {
-            return RSFinalMdrStatus.valueOf(Helper.toUpperCase(name));
+            return RSRoadClassificationi1.valueOf(Helper.toUpperCase(name));
         } catch (IllegalArgumentException ex) {
-            return NOT_MDR;
+            return UNKNOWN;
         }
     }
 }
