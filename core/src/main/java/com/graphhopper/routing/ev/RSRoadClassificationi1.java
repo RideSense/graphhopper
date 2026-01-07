@@ -23,8 +23,14 @@
 
 
 public enum RSRoadClassificationi1 {
-    URBANH, URBANWOH, NH, SH, NHORSH, NHSHADJACENT, INTERIOR, UNKNOWN;
-
+    // Urban classifications
+    URBANNH, URBANSH, URBANMDR, URBANOH, URBANHADJ, URBANTRACK, URBANPATH, URBANWOH,
+    // SemiUrban classifications
+    SEMIURBANNH, SEMIURBANSH, SEMIURBANMDR, SEMIURBANOH, SEMIURBANHADJ, SEMIURBANTRACK, SEMIURBANPATH, SEMIURBANWOH,
+    // Rural classifications
+    RURALNH, RURALSH, RURALMDR, RURALOH, RURALHADJ, RURALTRACK, RURALPATH, RURALWOH,
+    // Unknown/fallback
+    UNKNOWN;
     public static final String KEY = "road_classification_i1";
 
     public static EnumEncodedValue<RSRoadClassificationi1> create() {
