@@ -23,7 +23,7 @@
 
 
 public enum RSRoadClassificationv2 {
-    URBAN, NH, SH, INTERIOR, UNKNOWN;
+    URBAN, NH, SH, INTERIOR, SERVICE, UNKNOWN;
 
     public static final String KEY = "road_classification_v2";
 
