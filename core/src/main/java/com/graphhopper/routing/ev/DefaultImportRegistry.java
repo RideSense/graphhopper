@@ -72,7 +72,6 @@ import com.graphhopper.routing.util.parsers.RSBuildPercParser;
 import com.graphhopper.routing.util.parsers.RSPopulationDensityParser;
 import com.graphhopper.routing.util.parsers.RSRoadClassificationParser;
 import com.graphhopper.routing.util.parsers.RSRoadClassificationv2Parser;
-import com.graphhopper.routing.util.parsers.RSRoadClassificationi1Parser;
 import com.graphhopper.routing.util.parsers.RSRoadSettingi1Parser;
 import com.graphhopper.routing.util.parsers.RSRoadTypei1Parser;
 import com.graphhopper.routing.util.parsers.RSRoadCurvatureParser;
@@ -91,8 +90,6 @@ import com.graphhopper.routing.util.parsers.RSScenerySemiUrbanParser;
 import com.graphhopper.routing.util.parsers.RSScenerySnowCappedMountainParser;
 import com.graphhopper.routing.util.parsers.RSSceneryUrbanParser;
 import com.graphhopper.routing.util.parsers.RSSceneryRuralParser;
-import com.graphhopper.routing.util.parsers.RSRoadCurvatureRatioParser;
-import com.graphhopper.routing.util.parsers.RSTwistinessScoreParser;
 import com.graphhopper.routing.util.parsers.RSIntersectionSpeedDegradationFinalParser;
 import com.graphhopper.routing.util.parsers.RSPersonaMileMuncherBaseScoreParser;
 import com.graphhopper.routing.util.parsers.RSPersonaCornerCraverBaseScoreParser;
@@ -288,11 +285,6 @@ public class DefaultImportRegistry implements ImportRegistry {
                     (lookup, props) -> new RSRoadClassificationv2Parser(
                            lookup.getEnumEncodedValue(RSRoadClassificationv2.KEY, RSRoadClassificationv2.class))
             );
-        else if (RSRoadClassificationi1.KEY.equals(name))
-                return ImportUnit.create(name, props -> RSRoadClassificationi1.create(),
-                        (lookup, props) -> new RSRoadClassificationi1Parser(
-                               lookup.getEnumEncodedValue(RSRoadClassificationi1.KEY, RSRoadClassificationi1.class))
-                );            
         else if (RSRoadSettingi1.KEY.equals(name))
                 return ImportUnit.create(name, props -> RSRoadSettingi1.create(),
                         (lookup, props) -> new RSRoadSettingi1Parser(
@@ -373,16 +365,6 @@ public class DefaultImportRegistry implements ImportRegistry {
                     (lookup, props) -> new RSSceneryMountainPassParser(
                             lookup.getIntEncodedValue(RSSceneryMountainPass.KEY))
             );
-        else if (RSRoadCurvatureRatio.KEY.equals(name))
-                return ImportUnit.create(name, props -> RSRoadCurvatureRatio.create(),
-                        (lookup, props) -> new RSRoadCurvatureRatioParser(
-                                lookup.getDecimalEncodedValue(RSRoadCurvatureRatio.KEY))
-                );
-        else if (RSTwistinessScore.KEY.equals(name))
-                return ImportUnit.create(name, props -> RSTwistinessScore.create(),
-                        (lookup, props) -> new RSTwistinessScoreParser(
-                                lookup.getDecimalEncodedValue(RSTwistinessScore.KEY))
-                );
         else if (RSSceneryRural.KEY.equals(name))
                 return ImportUnit.create(name, props -> RSSceneryRural.create(),
                         (lookup, props) -> new RSSceneryRuralParser(
