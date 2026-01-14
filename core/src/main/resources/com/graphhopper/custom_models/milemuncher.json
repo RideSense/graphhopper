@@ -1,44 +1,83 @@
 {
   "distance_influence": 20,
   "priority": [
-    { "if": "!car_access", "multiply_by": "0" },
-    { "if": "rsbikeaccess == NO", "multiply_by": "0"},
-    { "if": "road_class == CONSTRUCTION", "multiply_by": "0"},
+    { "if": "!car_access || rsbikeaccess == NO || road_class == CONSTRUCTION || road_type_i1 == PATH", "multiply_by": "0" },
     { "if": "road_access == PRIVATE", "multiply_by": "0.2" },
-    { "if": "road_classification_v2 == NH",  "multiply_by": "1" },
-    { "if": "road_classification_v2 == SH",  "multiply_by": "0.8" },
-    { "if": "road_classification_v2 == NHORSH",  "multiply_by": "0.7" },
-    { "if": "road_classification_v2 == URBANH",  "multiply_by": "0.3" },
-    { "if": "road_classification_v2 == URBANWOH",  "multiply_by": "0.3" },
-    { "if": "road_classification_v2 == NHSHADJACENT",  "multiply_by": "0.1" },
-    { "if": "road_classification_v2 == INTERIOR",  "multiply_by": "0.1" },
-    { "if": "population_density <= 1000",  "multiply_by": "1" },
-    { "if": "population_density > 1000",  "multiply_by": "0.8" },
-    { "if": "build_perc <= 20",  "multiply_by": "1" },
-    { "if": "build_perc > 20",  "multiply_by": "0.8" },
-    { "else_if": "curvature <= 0.70",  "multiply_by": "0.6" },
-    { "else_if": "curvature <= 0.80",  "multiply_by": "0.7" },
-    { "else_if": "curvature <= 0.90",  "multiply_by": "0.8" },
-    { "else_if": "curvature > 0.90",  "multiply_by": "1" }
+
+
+    { "if": "oneway == YES", "do": [
+      { "if": "lanes > 1", "multiply_by": "1" },
+      { "else": "", "multiply_by": "0.9" }
+    ] },
+    { "else": "", "do": [
+      { "if": "lanes > 1", "multiply_by": "0.9" },
+      { "else": "", "multiply_by": "0.8" }
+    ] }
   ],
   "speed": [
-    { "if": "true", "limit_to": "0.9 * car_average_speed" },
     { "if": "true", "limit_to": "120" },
-    { "if": "road_classification_v2 == URBANH",  "limit_to": "60" },
-    { "if": "road_classification_v2 == URBANWOH",  "limit_to": "60" },
-    { "if": "road_classification_v2 == NH",  "limit_to": "100" },
-    { "if": "road_classification_v2 == SH",  "limit_to": "80" },
-    { "if": "road_classification_v2 == NHORSH",  "limit_to": "80" },
-    { "if": "road_classification_v2 == NHSHADJACENT",  "limit_to": "50" },
-    { "if": "road_classification_v2 == INTERIOR",  "limit_to": "50" },
-    { "if": "curvature <= 0.60",  "multiply_by": "0.6" },
-    { "else_if": "curvature <= 0.70",  "multiply_by": "0.7" },
-    { "else_if": "curvature <= 0.80",  "multiply_by": "0.8" },
-    { "else_if": "curvature <= 0.90",  "multiply_by": "0.9" },
-    { "else": "",  "multiply_by": "1" },
-    { "if": "lanes == 1",  "multiply_by": "0.7"},
-    { "if": "surface==COBBLESTONE || surface==GRASS || surface==GRAVEL || surface==SAND || surface==PAVING_STONES || surface==DIRT || surface==GROUND || surface==UNPAVED || surface==COMPACTED",
-      "limit_to": "30"
-    }
+    { "if": "surface==COBBLESTONE || surface==GRASS || surface==GRAVEL || surface==SAND || surface==PAVING_STONES || surface==DIRT || surface==GROUND || surface==UNPAVED || surface==COMPACTED", "limit_to": "30" },
+
+    { "if": "oneway == YES", "do": [
+      { "if": "lanes > 1", "multiply_by": "1" },
+      { "else": "", "multiply_by": "0.9" }
+    ] },
+    { "else": "", "do": [
+      { "if": "lanes > 1", "multiply_by": "0.9" },
+      { "else": "", "multiply_by": "0.8" }
+    ] },
+
+    { "if": "road_setting_i1 == RURAL", "do": [
+      { "if": "road_type_i1 == NH", "multiply_by": "0.9" },
+      { "else_if": "road_type_i1 == SH", "multiply_by": "0.8" },
+      { "else_if": "road_type_i1 == MDR", "multiply_by": "0.7" },
+      { "else_if": "road_type_i1 == OH", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == HADJ", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == TRACK", "multiply_by": "0.2" },
+      { "else_if": "road_type_i1 == WOH", "multiply_by": "0.25" },
+      { "else": "", "multiply_by": "0.25" }
+    ] },
+    { "else_if": "road_setting_i1 == SEMIURBAN", "do": [
+      { "if": "road_type_i1 == NH", "multiply_by": "0.8" },
+      { "else_if": "road_type_i1 == SH", "multiply_by": "0.6" },
+      { "else_if": "road_type_i1 == MDR", "multiply_by": "0.6" },
+      { "else_if": "road_type_i1 == OH", "multiply_by": "0.4" },
+      { "else_if": "road_type_i1 == HADJ", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == TRACK", "multiply_by": "0.2" },
+      { "else_if": "road_type_i1 == WOH", "multiply_by": "0.25" },
+      { "else": "", "multiply_by": "0.25" }
+    ] },
+    { "else_if": "road_setting_i1 == URBAN", "do": [
+      { "if": "road_type_i1 == NH", "multiply_by": "0.6" },
+      { "else_if": "road_type_i1 == SH", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == MDR", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == OH", "multiply_by": "0.4" },
+      { "else_if": "road_type_i1 == HADJ", "multiply_by": "0.5" },
+      { "else_if": "road_type_i1 == TRACK", "multiply_by": "0.2" },
+      { "else_if": "road_type_i1 == WOH", "multiply_by": "0.4" },
+      { "else": "", "multiply_by": "0.25" }
+    ] },
+    { "else": "", "multiply_by": "0.25" },
+
+    { "if": "intersection_speed_degradation_final < 1.0", "multiply_by": "intersection_speed_degradation_final" },
+
+    { "if": "build_perc >= 50", "multiply_by": "0.5" },
+    { "else_if": "build_perc >= 35", "multiply_by": "0.6" },
+    { "else_if": "build_perc >= 25", "multiply_by": "0.7" },
+    { "else_if": "build_perc >= 15", "multiply_by": "0.8" },
+    { "else": "", "multiply_by": "1" },
+
+    { "if": "population_density < 1000", "multiply_by": "1" },
+    { "else_if": "population_density >= 1000 && population_density < 2500", "multiply_by": "0.9" },
+    { "else_if": "population_density >= 2500 && population_density < 5000", "multiply_by": "0.8" },
+    { "else_if": "population_density >= 5000 && population_density < 20000", "multiply_by": "0.6" },
+    { "else_if": "population_density >= 20000 && population_density < 40000", "multiply_by": "0.5" },
+    { "else_if": "population_density >= 40000 && population_density < 100000", "multiply_by": "0.4" },
+    { "else_if": "population_density >= 100000 && population_density < 200000", "multiply_by": "0.3" },
+    { "else": "", "multiply_by": "0.2" },
+
+    { "if": "curvature <= 0.60", "multiply_by": "0.6" },
+    { "else_if": "curvature <= 0.90", "multiply_by": "curvature" },
+    { "else": "", "multiply_by": "1" }
   ]
 }

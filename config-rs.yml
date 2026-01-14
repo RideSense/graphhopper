@@ -39,6 +39,8 @@ graphhopper:
     custom_model_files: [trailblazer.json]
   - name: tranquiltraveller
     custom_model_files: [tranquiltraveller.json]
+  - name: empty
+    custom_model_files: [empty.json]
 
 #   You can use the following in-built profiles. After you start GraphHopper it will print which encoded values you'll have to add to graph.encoded_values in this config file.
 #
