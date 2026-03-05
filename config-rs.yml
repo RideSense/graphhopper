@@ -82,6 +82,7 @@ graphhopper:
     - profile: cornercraver
     - profile: trailblazer
     - profile: tranquiltraveller
+    - profile: empty
 
   # Hybrid mode:
   # Similar to speed mode, the hybrid mode (Landmarks, LM) also speeds up routing by doing calculating auxiliary data
@@ -102,7 +103,7 @@ graphhopper:
   # More are: surface,smoothness,max_width,max_height,max_weight,max_weight_except,hgv,max_axle_load,max_length,
   #           hazmat,hazmat_tunnel,hazmat_water,lanes,osm_way_id,toll,track_type,mtb_rating,hike_rating,horse_rating,
   #           country,curvature,average_slope,max_slope,car_temporal_access,bike_temporal_access,foot_temporal_access
-  graph.encoded_values: road_class, road_access, car_access, lanes, oneway, rsbikeaccess, curvature, osm_way_id, road_curvature_classification, road_classification, road_classification_v2, road_type_i1, road_setting_i1, build_perc, population_density, road_scenery_urban, road_scenery_semiurban, road_scenery_rural, road_scenery_forest, road_scenery_hill, road_scenery_lake, road_scenery_beach, road_scenery_river, road_scenery_desert, road_scenery_field, road_scenery_saltflat, road_scenery_mountainpass, road_scenery_snowcappedmountain, road_scenery_plantation, road_scenery_backwater, intersection_speed_degradation_final, persona_milemuncher_base_score, persona_cornercraver_base_score, persona_trailblazer_base_score, persona_tranquiltraveller_base_score, car_average_speed, surface, max_speed, orientation
+  graph.encoded_values: road_class, road_access, car_access, lanes, oneway, rsbikeaccess, curvature, osm_way_id, road_curvature_classification, road_classification, road_classification_v2, road_type_i1, road_setting_i1, build_perc, population_density, pop_density_normalized, urban_pressure, reinforced_pressure, road_scenery_urban, road_scenery_semiurban, road_scenery_rural, road_scenery_forest, road_scenery_hill, road_scenery_lake, road_scenery_beach, road_scenery_river, road_scenery_desert, road_scenery_field, road_scenery_saltflat, road_scenery_mountainpass, road_scenery_snowcappedmountain, road_scenery_plantation, road_scenery_backwater, intersection_speed_degradation_final, persona_milemuncher_base_score, persona_cornercraver_base_score, persona_trailblazer_base_score, persona_tranquiltraveller_base_score, persona_milemuncher_score_normalised, persona_cornercraver_score_normalised, persona_trailblazer_score_normalised, persona_tranquiltraveller_score_normalised, car_average_speed, surface, max_speed, orientation, fourlane
 
   #### Speed, hybrid and flexible mode ####
 
