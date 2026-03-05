@@ -1,7 +1,7 @@
 {
   "distance_influence": 20,
   "priority": [
-    { "if": "!car_access || rsbikeaccess == NO || road_class == CONSTRUCTION || road_type_i1 == PATH", "multiply_by": "0" },
+    { "if": "!car_access || rsbikeaccess == NO || road_class == CONSTRUCTION || road_type_i1 == PATH", "multiply_by": "0.01" },
     { "if": "road_access == PRIVATE", "multiply_by": "0.2" }
   ],
   "speed": [

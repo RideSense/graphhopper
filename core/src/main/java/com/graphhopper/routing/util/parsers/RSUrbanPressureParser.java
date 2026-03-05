@@ -14,38 +14,38 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense
 
 package com.graphhopper.routing.util.parsers;
 
 import com.graphhopper.reader.ReaderWay;
 import com.graphhopper.routing.ev.EdgeIntAccess;
 import com.graphhopper.routing.ev.DecimalEncodedValue;
+import com.graphhopper.routing.ev.RSUrbanPressure;
 import com.graphhopper.storage.IntsRef;
 
+public class RSUrbanPressureParser implements TagParser {
 
-public class RSPopulationDensityParser implements TagParser {
+    private final DecimalEncodedValue rsUrbanPressureEnc;
 
-    private final DecimalEncodedValue rSPopulationDensityEnc;
-
-    public RSPopulationDensityParser(DecimalEncodedValue rSPopulationDensityEnc) {
-        this.rSPopulationDensityEnc = rSPopulationDensityEnc;
+    public RSUrbanPressureParser(DecimalEncodedValue rsUrbanPressureEnc) {
+        this.rsUrbanPressureEnc = rsUrbanPressureEnc;
     }
 
     @Override
     public void handleWayTags(int edgeId, EdgeIntAccess edgeIntAccess, ReaderWay readerWay, IntsRef relationFlags) {
-        String rspopulationdensity = readerWay.getTag("population_density"); 
-        double value = 0.0;
-        if (rspopulationdensity != null) {
+        String tagValue = readerWay.getTag(RSUrbanPressure.KEY);
+        double value = 0.0;  // Default to 0.0
+        if (tagValue != null) {
             try {
-                value = Double.parseDouble(rspopulationdensity);
-                // Clamp to max storable value to prevent overflow
-                double maxValue = rSPopulationDensityEnc.getMaxStorableDecimal();
-                value = Math.max(0.0, Math.min(maxValue, value));
+                value = Double.parseDouble(tagValue);
+                // Clamp to 0.0-1.0 range
+                value = Math.max(0.0, Math.min(1.0, value));
             } catch (NumberFormatException e) {
                 value = 0.0;  // Default on parse error
             }
-        }        
-        rSPopulationDensityEnc.setDecimal(false, edgeId, edgeIntAccess, value);
+        }
+        rsUrbanPressureEnc.setDecimal(false, edgeId, edgeIntAccess, value);
     }
 }
+// End block - Added by KJ for RideSense
