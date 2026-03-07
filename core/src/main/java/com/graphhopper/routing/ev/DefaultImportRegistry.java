@@ -95,6 +95,14 @@ import com.graphhopper.routing.util.parsers.RSPersonaMileMuncherBaseScoreParser;
 import com.graphhopper.routing.util.parsers.RSPersonaCornerCraverBaseScoreParser;
 import com.graphhopper.routing.util.parsers.RSPersonaTrailBlazerBaseScoreParser;
 import com.graphhopper.routing.util.parsers.RSPersonaTranquilTravellerBaseScoreParser;
+import com.graphhopper.routing.util.parsers.RSPopDensityNormalizedParser;
+import com.graphhopper.routing.util.parsers.RSUrbanPressureParser;
+import com.graphhopper.routing.util.parsers.RSReinforcedPressureParser;
+import com.graphhopper.routing.util.parsers.RSPersonaMileMuncherScoreNormalisedParser;
+import com.graphhopper.routing.util.parsers.RSPersonaCornerCraverScoreNormalisedParser;
+import com.graphhopper.routing.util.parsers.RSPersonaTrailBlazerScoreNormalisedParser;
+import com.graphhopper.routing.util.parsers.RSPersonaTranquilTravellerScoreNormalisedParser;
+import com.graphhopper.routing.util.parsers.RSFourLaneParser;
 import com.graphhopper.routing.util.parsers.RacingBikeAccessParser;
 import com.graphhopper.routing.util.parsers.RacingBikeAverageSpeedParser;
 import com.graphhopper.routing.util.parsers.RacingBikePriorityParser;
@@ -274,6 +282,11 @@ public class DefaultImportRegistry implements ImportRegistry {
             return ImportUnit.create(name, props -> RSBikeAccess.create(),
                     (lookup, props) -> new RSBikeAccessParser(
                             lookup.getEnumEncodedValue(RSBikeAccess.KEY, RSBikeAccess.class))
+            );
+        else if (RSFourLane.KEY.equals(name))
+            return ImportUnit.create(name, props -> RSFourLane.create(),
+                    (lookup, props) -> new RSFourLaneParser(
+                            lookup.getEnumEncodedValue(RSFourLane.KEY, RSFourLane.class))
             );            
         else if (RSRoadClassification.KEY.equals(name))
             return ImportUnit.create(name, props -> RSRoadClassification.create(),
@@ -394,6 +407,41 @@ public class DefaultImportRegistry implements ImportRegistry {
                 return ImportUnit.create(name, props -> RSPersonaTranquilTravellerBaseScore.create(),
                         (lookup, props) -> new RSPersonaTranquilTravellerBaseScoreParser(
                                 lookup.getIntEncodedValue(RSPersonaTranquilTravellerBaseScore.KEY))
+                );
+        else if (RSPopDensityNormalized.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSPopDensityNormalized.create(),
+                        (lookup, props) -> new RSPopDensityNormalizedParser(
+                                lookup.getDecimalEncodedValue(RSPopDensityNormalized.KEY))
+                );
+        else if (RSUrbanPressure.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSUrbanPressure.create(),
+                        (lookup, props) -> new RSUrbanPressureParser(
+                                lookup.getDecimalEncodedValue(RSUrbanPressure.KEY))
+                );
+        else if (RSReinforcedPressure.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSReinforcedPressure.create(),
+                        (lookup, props) -> new RSReinforcedPressureParser(
+                                lookup.getDecimalEncodedValue(RSReinforcedPressure.KEY))
+                );
+        else if (RSPersonaMileMuncherScoreNormalised.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSPersonaMileMuncherScoreNormalised.create(),
+                        (lookup, props) -> new RSPersonaMileMuncherScoreNormalisedParser(
+                                lookup.getDecimalEncodedValue(RSPersonaMileMuncherScoreNormalised.KEY))
+                );
+        else if (RSPersonaCornerCraverScoreNormalised.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSPersonaCornerCraverScoreNormalised.create(),
+                        (lookup, props) -> new RSPersonaCornerCraverScoreNormalisedParser(
+                                lookup.getDecimalEncodedValue(RSPersonaCornerCraverScoreNormalised.KEY))
+                );
+        else if (RSPersonaTrailBlazerScoreNormalised.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSPersonaTrailBlazerScoreNormalised.create(),
+                        (lookup, props) -> new RSPersonaTrailBlazerScoreNormalisedParser(
+                                lookup.getDecimalEncodedValue(RSPersonaTrailBlazerScoreNormalised.KEY))
+                );
+        else if (RSPersonaTranquilTravellerScoreNormalised.KEY.equals(name))
+                return ImportUnit.create(name, props -> RSPersonaTranquilTravellerScoreNormalised.create(),
+                        (lookup, props) -> new RSPersonaTranquilTravellerScoreNormalisedParser(
+                                lookup.getDecimalEncodedValue(RSPersonaTranquilTravellerScoreNormalised.KEY))
                 );
         // End block - Added by KJ for RideSense 22062024            
         else if (OSMWayID.KEY.equals(name))
