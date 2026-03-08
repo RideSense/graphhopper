@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense - Intersection Speed Degradation v2
 
 package com.graphhopper.routing.ev;
 
-public class RSPopulationDensity {
-    public static final String KEY = "population_density";
+public class RSIntersectionSpeedDegradationFinal {
+    public static final String KEY = "intersection_speed_degradation_final";
 
     public static DecimalEncodedValue create() {
-        // Increased to 19 bits to support values up to 524,287 (covers the max value of ~291,764)
-        return new DecimalEncodedValueImpl(KEY, 19, 0, 1, false, false, false);
+        // Range: 0.0 to 1.0 (parser clamps to 0.5-1.0, default is 1.0)
+        // 8 bits precision (256 values), factor = 0.01 for 2 decimal places precision
+        // This gives precision of 0.01, covering range 0.00 to 2.55 (sufficient for 0-1.0)
+        return new DecimalEncodedValueImpl(KEY, 8, 0.0, 0.01, false, false, false);
     }
 }
+// End block - Added by KJ for RideSense - Intersection Speed Degradation v2
+

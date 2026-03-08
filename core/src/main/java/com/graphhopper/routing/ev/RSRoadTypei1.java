@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense 22122025
 
- package com.graphhopper.routing.ev;
+package com.graphhopper.routing.ev;
 
- import com.graphhopper.util.Helper;
+import com.graphhopper.util.Helper;
 
+public enum RSRoadTypei1 {
+    NH, SH, MDR, OH, HADJ, TRACK, PATH, WOH, UNKNOWN;
 
+    public static final String KEY = "road_type_i1";
 
-public enum RSFinalMdrStatus {
-    NH, SH, UNKNOWN;
-
-    public static final String KEY = "final_mdr_status";
-
-    public static EnumEncodedValue<RSFinalMdrStatus> create() {
-        return new EnumEncodedValue<>(KEY, RSFinalMdrStatus.class);
+    public static EnumEncodedValue<RSRoadTypei1> create() {
+        return new EnumEncodedValue<>(KEY, RSRoadTypei1.class);
     }
 
     @Override
@@ -36,14 +34,16 @@ public enum RSFinalMdrStatus {
         return Helper.toLowerCase(super.toString());
     }
 
-    public static RSFinalMdrStatus find(String name) {
+    public static RSRoadTypei1 find(String name) {
         if (Helper.isEmpty(name))
             return UNKNOWN;
         try {
-            return RSFinalMdrStatus.valueOf(Helper.toUpperCase(name));
+            return RSRoadTypei1.valueOf(Helper.toUpperCase(name));
         } catch (IllegalArgumentException ex) {
             return UNKNOWN;
         }
     }
 }
-// End block - Added by KJ for RideSense 16062024
+// End block - Added by KJ for RideSense 22122025
+
+

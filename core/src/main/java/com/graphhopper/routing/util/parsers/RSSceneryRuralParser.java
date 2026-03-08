@@ -14,38 +14,36 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense 22062024
 
 package com.graphhopper.routing.util.parsers;
 
 import com.graphhopper.reader.ReaderWay;
 import com.graphhopper.routing.ev.EdgeIntAccess;
-import com.graphhopper.routing.ev.DecimalEncodedValue;
+import com.graphhopper.routing.ev.IntEncodedValue;
 import com.graphhopper.storage.IntsRef;
 
+public class RSSceneryRuralParser implements TagParser {
 
-public class RSPopulationDensityParser implements TagParser {
+    private final IntEncodedValue rSSceneryRuralEnc;
 
-    private final DecimalEncodedValue rSPopulationDensityEnc;
-
-    public RSPopulationDensityParser(DecimalEncodedValue rSPopulationDensityEnc) {
-        this.rSPopulationDensityEnc = rSPopulationDensityEnc;
+    public RSSceneryRuralParser(IntEncodedValue rSSceneryRuralEnc) {
+        this.rSSceneryRuralEnc = rSSceneryRuralEnc;
     }
 
     @Override
     public void handleWayTags(int edgeId, EdgeIntAccess edgeIntAccess, ReaderWay readerWay, IntsRef relationFlags) {
-        String rspopulationdensity = readerWay.getTag("population_density"); 
-        double value = 0.0;
-        if (rspopulationdensity != null) {
+        String tagValue = readerWay.getTag("road_scenery_rural");
+        int value = 0;
+        if (tagValue != null) {
             try {
-                value = Double.parseDouble(rspopulationdensity);
-                // Clamp to max storable value to prevent overflow
-                double maxValue = rSPopulationDensityEnc.getMaxStorableDecimal();
-                value = Math.max(0.0, Math.min(maxValue, value));
+                value = Integer.parseInt(tagValue);
             } catch (NumberFormatException e) {
-                value = 0.0;  // Default on parse error
+                value = 0;
             }
-        }        
-        rSPopulationDensityEnc.setDecimal(false, edgeId, edgeIntAccess, value);
+        }
+        rSSceneryRuralEnc.setInt(false, edgeId, edgeIntAccess, value);
     }
 }
+// End block - Added by KJ for RideSense 22062024
+

@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense 22062024
 
 package com.graphhopper.routing.ev;
 
-public class RSPopulationDensity {
-    public static final String KEY = "population_density";
+public class RSSceneryRural {
+    public static final String KEY = "road_scenery_rural";
 
-    public static DecimalEncodedValue create() {
-        // Increased to 19 bits to support values up to 524,287 (covers the max value of ~291,764)
-        return new DecimalEncodedValueImpl(KEY, 19, 0, 1, false, false, false);
+    public static IntEncodedValue create() {
+        return new IntEncodedValueImpl(KEY, 2, false);
     }
 }
+// End block - Added by KJ for RideSense 22062024
+

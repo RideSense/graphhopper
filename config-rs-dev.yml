@@ -1,9 +1,9 @@
 graphhopper:
 
   # OpenStreetMap input file PBF or XML, can be changed via command line -Ddw.graphhopper.datareader.file=some.pbf
-  datareader.file: ""
+  datareader.file: "/Users/kaushikjayaram/RideSense/Codebase/LocationIntelligence/osm-processing-pipeline/osm_pbf_augmented_output/india-latest-augmented_14012026_with_db_tags_20260305_085758.osm.pbf"
   # Local folder used by graphhopper to store its data
-  graph.location: "/data/default-gh"
+  graph.location: "/Users/kaushikjayaram/RideSense/Codebase/LocationIntelligence/graphhopper/graph-cache"
 
 
   ##### Routing Profiles ####
@@ -122,10 +122,10 @@ graphhopper:
   #### Elevation ####
 
   # To populate your graph with elevation data use SRTM, default is noop (no elevation). Read more about it in docs/core/elevation.md
-  graph.elevation.provider: noop
+  #graph.elevation.provider: noop
 
   # default location for cache is /tmp/srtm
-  # graph.elevation.cache_dir: /data/srtm
+  #graph.elevation.cache_dir: /data/srtm
 
   # If you have a slow disk or plenty of RAM change the default MMAP to:
   # graph.elevation.dataaccess: RAM_STORE

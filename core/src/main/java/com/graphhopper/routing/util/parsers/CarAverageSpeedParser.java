@@ -129,12 +129,10 @@ public class CarAverageSpeedParser extends AbstractAverageSpeedParser implements
             return;
         }
 
-        // get assumed speed from highway type
-        double speed = getSpeed(way);
-        speed = applyBadSurfaceSpeed(way, speed);
-
-        setSpeed(false, edgeId, edgeIntAccess, applyMaxSpeed(way, speed, false));
-        setSpeed(true, edgeId, edgeIntAccess, applyMaxSpeed(way, speed, true));
+        // Set static 100 km/h for all non-ferry roads
+        setSpeed(false, edgeId, edgeIntAccess, 100.0);
+        if (avgSpeedEnc.isStoreTwoDirections())
+            setSpeed(true, edgeId, edgeIntAccess, 100.0);
     }
 
     /**

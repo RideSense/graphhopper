@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense - Persona Scores Integration
 
 package com.graphhopper.routing.ev;
 
-public class RSPopulationDensity {
-    public static final String KEY = "population_density";
+public class RSPersonaCornerCraverBaseScore {
+    public static final String KEY = "persona_cornercraver_base_score";
 
-    public static DecimalEncodedValue create() {
-        // Increased to 19 bits to support values up to 524,287 (covers the max value of ~291,764)
-        return new DecimalEncodedValueImpl(KEY, 19, 0, 1, false, false, false);
+    public static IntEncodedValue create() {
+        // Range: 0 to 100 (persona base score)
+        // 7 bits precision (2^7 = 128, covers 0-100)
+        return new IntEncodedValueImpl(KEY, 7, 0, false, false);
     }
 }
+// End block - Added by KJ for RideSense - Persona Scores Integration

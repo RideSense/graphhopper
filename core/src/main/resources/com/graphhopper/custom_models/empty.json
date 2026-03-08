@@ -1,0 +1,8 @@
+{
+  "distance_influence": 20,
+  "priority": [],
+  "speed": [
+    { "if": "true", "limit_to": "120" }
+  ]
+}
+

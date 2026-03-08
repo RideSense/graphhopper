@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
- // Start block - Added by KJ for RideSense 16062024
+// Start block - Added by KJ for RideSense
 
- package com.graphhopper.routing.ev;
+package com.graphhopper.routing.ev;
 
- import com.graphhopper.util.Helper;
+import com.graphhopper.util.Helper;
 
+public enum RSFourLane {
+    NO, YES;
 
+    public static final String KEY = "fourlane";
 
-public enum RSRoadClassificationv2 {
-    URBAN, NH, SH, INTERIOR, SERVICE, UNKNOWN;
-
-    public static final String KEY = "road_classification_v2";
-
-    public static EnumEncodedValue<RSRoadClassificationv2> create() {
-        return new EnumEncodedValue<>(KEY, RSRoadClassificationv2.class);
+    public static EnumEncodedValue<RSFourLane> create() {
+        return new EnumEncodedValue<>(KEY, RSFourLane.class);
     }
 
     @Override
@@ -36,14 +34,14 @@ public enum RSRoadClassificationv2 {
         return Helper.toLowerCase(super.toString());
     }
 
-    public static RSRoadClassificationv2 find(String name) {
+    public static RSFourLane find(String name) {
         if (Helper.isEmpty(name))
-            return UNKNOWN;
+            return NO;  // Default to NO
         try {
-            return RSRoadClassificationv2.valueOf(Helper.toUpperCase(name));
+            return RSFourLane.valueOf(Helper.toUpperCase(name));
         } catch (IllegalArgumentException ex) {
-            return UNKNOWN;
+            return NO;  // Default to NO on parse error
         }
     }
 }
-// End block - Added by KJ for RideSense 16062024
+// End block - Added by KJ for RideSense
